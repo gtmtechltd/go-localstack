@@ -17,7 +17,7 @@ package internal_test
 import (
 	"testing"
 
-	"github.com/elgohr/go-localstack/internal"
+	"github.com/gtmtechltd/go-localstack/internal"
 	"github.com/stretchr/testify/assert"
 )
 

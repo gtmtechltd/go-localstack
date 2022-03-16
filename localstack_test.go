@@ -31,7 +31,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/elgohr/go-localstack"
+	"github.com/gtmtechltd/go-localstack"
 )
 
 func TestMain(m *testing.M) {

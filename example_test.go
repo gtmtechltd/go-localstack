@@ -23,7 +23,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/endpoints"
 
-	"github.com/elgohr/go-localstack"
+	"github.com/gtmtechltd/go-localstack"
 )
 
 func ExampleLocalstackWithContext() {

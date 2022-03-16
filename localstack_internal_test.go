@@ -20,7 +20,7 @@ import (
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/go-connections/nat"
-	"github.com/elgohr/go-localstack/internal/internalfakes"
+	"github.com/gtmtechltd/go-localstack/internal/internalfakes"
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/require"
 	"io"

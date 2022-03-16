@@ -1,9 +1,9 @@
 # go-localstack
 
-[![Actions Status](https://github.com/elgohr/go-localstack/workflows/Test/badge.svg)](https://github.com/elgohr/go-localstack/actions)
-[![codecov](https://codecov.io/gh/elgohr/go-localstack/branch/main/graph/badge.svg)](https://codecov.io/gh/elgohr/go-localstack)
-[![Go Report Card](https://goreportcard.com/badge/github.com/elgohr/go-localstack)](https://goreportcard.com/report/github.com/elgohr/go-localstack)
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/elgohr/go-localstack)](https://pkg.go.dev/github.com/elgohr/go-localstack)
+[![Actions Status](https://github.com/gtmtechltd/go-localstack/workflows/Test/badge.svg)](https://github.com/gtmtechltd/go-localstack/actions)
+[![codecov](https://codecov.io/gh/gtmtechltd/go-localstack/branch/main/graph/badge.svg)](https://codecov.io/gh/gtmtechltd/go-localstack)
+[![Go Report Card](https://goreportcard.com/badge/github.com/gtmtechltd/go-localstack)](https://goreportcard.com/report/github.com/gtmtechltd/go-localstack)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/gtmtechltd/go-localstack)](https://pkg.go.dev/github.com/gtmtechltd/go-localstack)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/gojp/goreportcard/blob/master/LICENSE)
 
 Go Wrapper for using [localstack](https://github.com/localstack/localstack) in go testing
@@ -13,7 +13,7 @@ Go Wrapper for using [localstack](https://github.com/localstack/localstack) in g
 Please make sure that you have Docker installed.
 
 ```bash
-go get github.com/elgohr/go-localstack
+go get github.com/gtmtechltd/go-localstack
 ```
 
 # Usage
@@ -23,7 +23,7 @@ With SDK V2
 func ExampleLocalstackWithContextSdkV2() {
     ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
     defer cancel()
-    
+
     l, err := localstack.NewInstance()
     if err != nil {
         log.Fatalf("Could not connect to Docker %v", err)
@@ -31,14 +31,14 @@ func ExampleLocalstackWithContextSdkV2() {
     if err := l.StartWithContext(ctx); err != nil {
         log.Fatalf("Could not start localstack %v", err)
     }
-    
+
     cfg, err := config.LoadDefaultConfig(ctx,
         config.WithRegion("us-east-1"),
         config.WithEndpointResolverWithOptions(aws.EndpointResolverWithOptionsFunc(func(_, _ string, _ ...interface{}) (aws.Endpoint, error) {
             return aws.Endpoint{
-			    PartitionID:       "aws", 
-			    URL:               l.EndpointV2(localstack.SQS), 
-			    SigningRegion:     "us-east-1", 
+			    PartitionID:       "aws",
+			    URL:               l.EndpointV2(localstack.SQS),
+			    SigningRegion:     "us-east-1",
 			    HostnameImmutable: true,
 		    }, nil
         })),
@@ -47,7 +47,7 @@ func ExampleLocalstackWithContextSdkV2() {
     if err != nil {
         log.Fatalf("Could not get config %v", err)
     }
-    
+
     myTestWithV2(cfg)
 }
 ```
