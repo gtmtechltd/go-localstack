@@ -30,6 +30,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"io"
 	"log"
+	"strings"
 	"sync"
 	"time"
 
@@ -251,7 +252,7 @@ func (i *Instance) startLocalstack(ctx context.Context, services ...Service) err
 	pm := nat.PortMap{}
 	for service := range AvailableServices {
 		log.Printf("Setting mapping %v to 127.0.0.1:%v", service.Port, service.Port)
-		pm[nat.Port(service.Port)] = []nat.PortBinding{{HostIP: "127.0.0.1", HostPort: service.Port}}
+		pm[nat.Port(service.Port)] = []nat.PortBinding{{HostIP: "127.0.0.1", HostPort: strings.Split(service.Port, "/")[0]}}
 	}
 	log.Printf("portmapping is %v", pm)
 
