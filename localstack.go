@@ -250,7 +250,7 @@ func (i *Instance) startLocalstack(ctx context.Context, services ...Service) err
 
 	pm := nat.PortMap{}
 	for service := range AvailableServices {
-		pm[nat.Port(service.Port)] = []nat.PortBinding{{HostIP: "127.0.0.1", HostPort: "4556"}}
+		pm[nat.Port(service.Port)] = []nat.PortBinding{{HostIP: "127.0.0.1", HostPort: "4566"}}
 	}
 
 	environmentVariables := []string{}
