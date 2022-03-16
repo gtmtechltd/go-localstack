@@ -28,6 +28,7 @@ import (
 	"github.com/docker/docker/client"
 	"github.com/docker/go-connections/nat"
 	"github.com/sirupsen/logrus"
+        "log"
 	"io"
 	"sync"
 	"time"
@@ -98,7 +99,8 @@ func NewInstance(opts ...InstanceOption) (*Instance, error) {
 		i.version = version.String()
 		i.fixedPort = portChangeIntroduced.Check(version)
 	}
-
+	log.Printf("fixedPort: %v", i.fixedPort)
+        log.Printf("version: %v", i.version)
 	return &i, nil
 }
 
