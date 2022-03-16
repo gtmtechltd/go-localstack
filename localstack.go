@@ -28,8 +28,8 @@ import (
 	"github.com/docker/docker/client"
 	"github.com/docker/go-connections/nat"
 	"github.com/sirupsen/logrus"
-        "log"
 	"io"
+	"log"
 	"sync"
 	"time"
 
@@ -100,7 +100,7 @@ func NewInstance(opts ...InstanceOption) (*Instance, error) {
 		i.fixedPort = portChangeIntroduced.Check(version)
 	}
 	log.Printf("fixedPort: %v", i.fixedPort)
-        log.Printf("version: %v", i.version)
+	log.Printf("version: %v", i.version)
 	return &i, nil
 }
 
@@ -250,7 +250,7 @@ func (i *Instance) startLocalstack(ctx context.Context, services ...Service) err
 
 	pm := nat.PortMap{}
 	for service := range AvailableServices {
-		pm[nat.Port(service.Port)] = []nat.PortBinding{{HostIP: "0.0.0.0", HostPort: ""}}
+		pm[nat.Port(service.Port)] = []nat.PortBinding{{HostIP: "127.0.0.1", HostPort: "4556"}}
 	}
 
 	environmentVariables := []string{}
