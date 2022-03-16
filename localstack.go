@@ -251,7 +251,7 @@ func (i *Instance) startLocalstack(ctx context.Context, services ...Service) err
 
 	pm := nat.PortMap{}
 	for service := range AvailableServices {
-		log.Printf("Setting mapping %v to 127.0.0.1:%v", service.Port, service.Port)
+		log.Printf("Setting mapping %v to 127.0.0.1:%v", service.Port, strings.Split(service.Port, "/")[0])
 		pm[nat.Port(service.Port)] = []nat.PortBinding{{HostIP: "127.0.0.1", HostPort: strings.Split(service.Port, "/")[0]}}
 	}
 	log.Printf("portmapping is %v", pm)
@@ -282,6 +282,7 @@ func (i *Instance) startLocalstack(ctx context.Context, services ...Service) err
 	if err != nil {
 		return fmt.Errorf("localstack: could not create container: %w", err)
 	}
+	time.Sleep(30)
 
 	i.setContainerId(resp.ID)
 
