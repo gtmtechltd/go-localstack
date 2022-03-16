@@ -253,6 +253,7 @@ func (i *Instance) startLocalstack(ctx context.Context, services ...Service) err
 		log.Printf("Setting mapping %v to 127.0.0.1:%v", service.Port, service.Port)
 		pm[nat.Port(service.Port)] = []nat.PortBinding{{HostIP: "127.0.0.1", HostPort: service.Port}}
 	}
+	log.Printf("portmapping is %v", pm)
 
 	environmentVariables := []string{}
 	if len(services) > 0 {
